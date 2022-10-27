@@ -1,0 +1,11 @@
+query getUserDocument($ci: String!, $doc: String!, $key: String!) {
+      buscaPorDocumento(_ci: $ci, _doc: $doc, _key: $key) {
+        numdoc
+        nombres
+        appaterno
+        apmaterno
+        fnacimiento
+        foto
+        respuesta
+        }
+}
