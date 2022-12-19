@@ -19,7 +19,7 @@ class SearchViewModel: ViewModel() {
             val client = MyApolloClient().setUpApolloClient()
             val newKey = CudapEncryption.encrypt(ciUsuario)
             try {
-                val response = client.query(GetUserDocumentQuery(ciUsuario,"CEDULA DE IDENTIDAD",newKey.toString())).execute()
+                val response = client.query(GetUserDocumentQuery(ciUsuario,"CEDULA DE IDENTIDAD","",newKey.toString())).execute()
                 response.data?.buscaPorDocumento?.first()?.let {myPerson ->
                     searchedPerson.postValue(Person.Data.BuscaPorDocumento(
                         myPerson.apmaterno,
@@ -31,7 +31,6 @@ class SearchViewModel: ViewModel() {
                         myPerson.respuesta
                     ))
                 }
-                Log.d("chris","tu busqueda ${response?.toString()}")
             } catch (e : ApolloException){
                 Log.d("chris","search query went wrong")
             }
